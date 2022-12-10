@@ -30,5 +30,8 @@ fn main()  {
     circle_fn2();
     circle_fn3();
     circle_fn4();
+    let mut s = String::from("Hello");
+    s.push_str(", World");
+    println!("{}",s);
 }
 
