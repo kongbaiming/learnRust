@@ -1,20 +1,12 @@
-use std::cmp::Ordering;
-use std::io;
-use rand::Rng;
+mod user_info;
+use user_info::user::User;
+mod game;
+use game::guess_game::guess_game;
 
 fn main()  {
-    println!("猜测一个数字");
-    let  secret_number = rand::thread_rng().gen_range(1..3);
-
-    let  mut guess = String::new();
-    io::stdin().read_line(&mut guess).expect("无法读取");
-    println!("你猜测的是: {}",guess);
-    // println!("随机数是: {}",secret_number);
-    match  guess.cmp(&secret_number.to_string()) {
-        Ordering::Less => println!("Too small"),
-        Ordering::Equal => println!("You win"),
-        Ordering::Greater => println!("Too Big"),
-    }
-
+    let u1 = User::new_user(String::from("tom"), 5);
+    println!("user name: {}", u1.name());
+    println!("1+2: {}", user_info::user::add(1, 2));
+    guess_game()
 }
 
