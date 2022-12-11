@@ -1,4 +1,4 @@
-pub fn first_world(s: &String) -> &str {
+pub fn first_world(s: &str) -> &str {
     let bytes = s.as_bytes();
     for (i,&item) in bytes.iter().enumerate() {
         if item == b' ' {
@@ -7,3 +7,5 @@ pub fn first_world(s: &String) -> &str {
     }
     &s[..]
 }
+
+

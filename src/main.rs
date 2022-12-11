@@ -4,6 +4,8 @@ mod game;
 // use game::guess_game::guess_game;
 mod fn_learn;
 mod slice;
+mod learn_struct;
+mod learn_enum;
 
 use fn_learn::fn_learn::fn1;
 use fn_learn::fn_learn::fn2;
@@ -16,12 +18,12 @@ use fn_learn::fn_learn::gives_ownership;
 use fn_learn::fn_learn::takes_and_gives_back;
 use fn_learn::fn_learn::calculate_length;
 use slice::learn_slice::first_world;
+use learn_struct::learn_struct::area1;
+use crate::learn_struct::learn_struct::Rectangle;
+use learn_enum::ipaddr_kind;
 
 
 fn main()  {
-    let u1 = User::new_user(String::from("tom"), 5);
-    println!("user name: {}", u1.name());
-    println!("1+2: {}", user_info::user::add(1, 2));
     // guess_game()
     let test =fn1();
     println!("test: {}",test);
@@ -58,7 +60,17 @@ fn main()  {
     let len = calculate_length(&mut ss4);
     println!("{}",len);
     let ss5 = String::from("rust 111");
-    let len1 = first_world(&ss5);
+    let len1 = first_world(&ss5[..]);
     println!("{}",len1);
+    let user1 = User::new("king".parse().unwrap(), 18, "king@com.com".parse().unwrap(), 128, true);
+    println!("{:#?}",user1);
+    let rectangle = Rectangle::new(30,50);
+    let rect = area1(&rectangle);
+    println!("{}",rect);
+    let rect1 = rectangle.area();
+    println!("{}",rect1);
+    let four = ipaddr_kind::IpaddrKind::V4;
+    let six = ipaddr_kind::IpaddrKind::V6;
+    ipaddr_kind::route(four);
+    ipaddr_kind::route(six);
 }
-
