@@ -1,4 +1,6 @@
 mod user_info;
+
+use std::collections::HashMap;
 use user_info::user::User;
 mod game;
 // use game::guess_game::guess_game;
@@ -73,4 +75,46 @@ fn main()  {
     let six = ipaddr_kind::IpaddrKind::V6;
     ipaddr_kind::route(four);
     ipaddr_kind::route(six);
+    let test1 = String::from("hello");
+    let test2 = String::from("hello1");
+    // let test3 = test1 + &test2;
+    // println!("{}",test3);
+    // println!("{}",test2);
+    let s = format!("{}{}",test1,test2);
+    println!("{}",s);
+    // rust 字符串不支持索引访问
+
+    let mut scores = HashMap::new();
+    scores.insert(String::from("blue"),10);
+    println!("{:#?}",scores);
+
+    //
+    let teams = vec![String::from("blue"),String::from("yellow")];
+    let intial_scores = vec![10,50];
+    let mut scores:HashMap<_,_> = teams.iter().zip(intial_scores.iter()).collect();
+    println!("{:#?}",scores);
+    let team_name = String::from("blue");
+    let score = scores.get(&team_name);
+    match score {
+        Some(s) => println!("{}",s),
+        None => println!("team not exist!"),
+    };
+    for (k,v) in &scores {
+        println!("{},{}",k,v)
+    }
+    let mut color = HashMap::new();
+    //entry  or_insert不存在插入
+    color.entry(String::from("yellow")).or_insert(50);
+    color.entry(String::from("blue")).or_insert(10);
+    color.entry(String::from("yellow")).or_insert(10);
+    println!("{:#?}",color);
+
+    // 存在更新value
+    let text = "hello world wonderful world";
+    let mut map = HashMap::new();
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count +=1;
+    }
+    println!("{:#?}",map);
 }
